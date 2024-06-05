@@ -1,5 +1,5 @@
 ### Brief
-this is the backend of the store`s offer , that have one route that return the offers data from a file .
+this is the backend of the store`s offer , that have two routes that return the offers data from a file and edit the offers data into a file .
 
 
 ## Stack
