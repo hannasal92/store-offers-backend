@@ -13,6 +13,11 @@ export class StoreService {
         try {
             const data = fs.readFileSync(this.jsonPath, 'utf8');
             const fileContent = JSON.parse(data)[userId] ;
+            
+            if(fileContent === undefined) {
+              return {offers : []};
+            }
+
             return fileContent ;
           } catch (err) {
             throw new NotFoundException("File not found")
