@@ -26,7 +26,7 @@ export class StoreService {
 
           offers.forEach((offer:IOffer)=>{
             if(offer.id === id){
-              offer.buyLeft-=1
+              offer.buyLeft -= 1
             }
           })
 
