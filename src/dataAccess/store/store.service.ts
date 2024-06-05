@@ -4,7 +4,6 @@ const fs = require('node:fs');
 @Injectable()
 export class StoreService {
   constructor(
-    // @Inject(GlimpseRepository) private glimpseRepository: IGlimpseRepository
     ){}
 
     async getStoreOffers() {

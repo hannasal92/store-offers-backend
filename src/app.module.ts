@@ -8,6 +8,3 @@ import { StoreModule } from './dataAccess/store/store.module';
   controllers: [],
 })
 export class AppModule {}
-
-
-// MongooseModule.forRoot(process.env.MONGO_CONNECTION_STRING)
