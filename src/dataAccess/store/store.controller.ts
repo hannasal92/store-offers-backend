@@ -1,6 +1,8 @@
 import{
  Controller,
- Get
+ Get,
+ Param,
+ Put
 }from '@nestjs/common';
 import { StoreService } from './store.service';
 
@@ -8,9 +10,13 @@ import { StoreService } from './store.service';
 export class StoreController {
     constructor(private storeService: StoreService) {}
 
-    @Get('/offersFile')
+    @Get('/offers')
     async getStoreOffers() {
       return await this.storeService.getStoreOffers();
+    }
+    @Put('/offers/:id')
+    async editOffers(@Param() params : any):Promise<any> {
+      return await this.storeService.editStoreOffers(params.id);
     }
 
 }
