@@ -2,7 +2,8 @@ import{
  Controller,
  Get,
  Param,
- Put
+ Put,
+ Query
 }from '@nestjs/common';
 import { StoreService } from './store.service';
 
@@ -10,13 +11,13 @@ import { StoreService } from './store.service';
 export class StoreController {
     constructor(private storeService: StoreService) {}
 
-    @Get('/offers')
-    async getStoreOffers() {
-      return await this.storeService.getStoreOffers();
+    @Get('/offers/:userId')
+    async getStoreOffers(@Param() params : any) {
+      return await this.storeService.getStoreOffers(params.userId);
     }
-    @Put('/offers/:id')
-    async editOffers(@Param() params : any):Promise<any> {
-      return await this.storeService.editStoreOffers(params.id);
+    @Put('/offers')
+    async editOffers(@Query() query : any):Promise<any> {
+      return await this.storeService.editStoreOffers(query.id,query.userId);
     }
 
 }

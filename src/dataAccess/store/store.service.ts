@@ -14,26 +14,32 @@ export class StoreService {
   constructor(
     ){}
 
-    async getStoreOffers() {
+    async getStoreOffers(userId:string) {
         try {
             const data = fs.readFileSync(this.jsonPath, 'utf8');
-            const fileContent = JSON.parse(data) ;
+            const fileContent = JSON.parse(data)[userId] ;
             return fileContent ;
           } catch (err) {
             throw new NotFoundException("File not found")
           }
     }
 
-    async editStoreOffers(id : string) {
+    async editStoreOffers(id : string,userId:string) {
       try {
           const data = fs.readFileSync(this.jsonPath, 'utf8');
-          const offers:Array<IOffer> = JSON.parse(data).offers
+          const offers:Array<IOffer> = JSON.parse(data)[userId].offers
           offers.forEach((offer:IOffer)=>{
             if(offer.id === id){
               offer.buyLeft-=1
             }
           })
-          fs.writeFile(this.jsonPath, JSON.stringify({offers}), 'utf8', (err) => {
+          const updatedData = {
+            ...JSON.parse(data),
+            [userId]:{
+              offers
+            }
+          }
+          fs.writeFile(this.jsonPath, JSON.stringify(updatedData), 'utf8', (err) => {
             if (err) {
               console.error('Error writing to file:', err);
               return;
